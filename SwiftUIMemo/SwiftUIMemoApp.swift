@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+  
 @main
 struct SwiftUIMemoApp: App {
     let persistenceController = PersistenceController.shared
