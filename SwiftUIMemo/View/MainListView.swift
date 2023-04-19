@@ -13,6 +13,9 @@ struct MainListView: View {
     //속성을 해당 인스턴스로 자동으로 초기화한다
     //하나의 데이터를 여러뷰에서 공유하고 싶을 때 사용하는 방식
     @EnvironmentObject var store: MemoStore
+    
+    @State private var showComposer: Bool = false
+    
     var body: some View {
         NavigationView {
             List(store.list){ memo in
@@ -20,6 +23,16 @@ struct MainListView: View {
             }
             .listStyle(.plain)
             .navigationTitle("내 메모")
+            .toolbar {
+                Button{
+                    showComposer = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+            .sheet(isPresented: $showComposer) {
+                ComposeView()
+            }
         }
     }
 }
